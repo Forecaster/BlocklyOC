@@ -50,6 +50,10 @@ Blockly.Lua['space'] = function(block) {
 Blockly.Lua['transferto'] = function(block) {
 	var value_slot = Blockly.Lua.valueToCode(block, 'slot', Blockly.Lua.ORDER_ATOMIC);
 	var value_count = Blockly.Lua.valueToCode(block, 'count', Blockly.Lua.ORDER_ATOMIC);
+	if (value_slot == "")
+		value_slot = 'nil';
+	if (value_count == "")
+		value_count = 'nil';
 	var code = 'robot.transferTo(' + value_slot + ', ' + value_count + ')\n';
 	return code;
 };
