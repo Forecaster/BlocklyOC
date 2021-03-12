@@ -1,0 +1,172 @@
+<xml xmlns="https://developers.google.com/blockly/xml" id="toolbox_beginner_mode" style="display: none">
+  <category name="Text" colour="#5ba58c">
+    <block type="text">
+      <field name="TEXT"></field>
+    </block>
+    <block type="text_length">
+      <value name="VALUE">
+        <shadow type="text">
+          <field name="TEXT">abc</field>
+        </shadow>
+      </value>
+    </block>
+    <block type="text_isEmpty">
+      <value name="VALUE">
+        <shadow type="text">
+          <field name="TEXT"></field>
+        </shadow>
+      </value>
+    </block>
+    <block type="text_print">
+      <value name="TEXT">
+        <shadow type="text">
+          <field name="TEXT">abc</field>
+        </shadow>
+      </value>
+    </block>
+  </category>
+  <category name="Numbers" colour="#5b67a5">
+    <block type="math_number">
+      <field name="NUM">0</field>
+    </block>
+    <block type="math_arithmetic">
+      <field name="OP">ADD</field>
+      <value name="A">
+        <shadow type="math_number">
+          <field name="NUM">1</field>
+        </shadow>
+      </value>
+      <value name="B">
+        <shadow type="math_number">
+          <field name="NUM">1</field>
+        </shadow>
+      </value>
+    </block>
+    <block type="math_number_property">
+      <mutation divisor_input="false"></mutation>
+      <field name="PROPERTY">EVEN</field>
+      <value name="NUMBER_TO_CHECK">
+        <shadow type="math_number">
+          <field name="NUM">0</field>
+        </shadow>
+      </value>
+    </block>
+    <block type="math_random_int">
+      <value name="FROM">
+        <shadow type="math_number">
+          <field name="NUM">1</field>
+        </shadow>
+      </value>
+      <value name="TO">
+        <shadow type="math_number">
+          <field name="NUM">100</field>
+        </shadow>
+      </value>
+    </block>
+  </category>
+  <category name="Logic" colour="#5b80a5">
+    <block type="controls_if"></block>
+    <block type="logic_compare">
+      <field name="OP">EQ</field>
+    </block>
+    <block type="logic_operation">
+      <field name="OP">AND</field>
+    </block>
+    <block type="logic_negate"></block>
+    <block type="logic_boolean">
+      <field name="BOOL">TRUE</field>
+    </block>
+    <block type="logic_null"></block>
+    <block type="logic_ternary"></block>
+  </category>
+  <category name="Loops" colour="#5ba55b">
+    <block type="controls_repeat_ext">
+      <value name="TIMES">
+        <shadow type="math_number">
+          <field name="NUM">10</field>
+        </shadow>
+      </value>
+    </block>
+    <block type="controls_whileUntil">
+      <field name="MODE">WHILE</field>
+    </block>
+    <block type="controls_for">
+      <field name="VAR" id="_N}Mw63nx]6SbLz$TuIx">i</field>
+      <value name="FROM">
+        <shadow type="math_number">
+          <field name="NUM">1</field>
+        </shadow>
+      </value>
+      <value name="TO">
+        <shadow type="math_number">
+          <field name="NUM">10</field>
+        </shadow>
+      </value>
+      <value name="BY">
+        <shadow type="math_number">
+          <field name="NUM">1</field>
+        </shadow>
+      </value>
+    </block>
+    <block type="controls_forEach">
+      <field name="VAR" id="T}i@}]C[*Bo1c;RiH{!^">j</field>
+    </block>
+    <block type="controls_flow_statements">
+      <field name="FLOW">BREAK</field>
+    </block>
+  </category>s
+  <sep></sep>
+  <category name="Variables" colour="#a55b80" custom="VARIABLE"></category>
+  <sep></sep>
+  <category name="Robot" colour="#745ba5">
+    <block type="robot_move"></block>
+    <block type="robot_turn"></block>
+    <block type="robot_suck"></block>
+    <block type="robot_drop"></block>
+    <block type="robot_place"></block>
+    <block type="robot_swing"></block>
+    <block type="robot_use"></block>
+    <block type="robot_craft"></block>
+    <block type="robot_select"></block>
+    <block type="robot_transfer"></block>
+    <block type="robot_detect"></block>
+    <block type="robot_compare"></block>
+    <block type="robot_count"></block>
+    <block type="robot_inventory_size"></block>
+  </category>
+  <category name="Computer" colour="#5ba58c">
+    <block type="computer_shutdown"></block>
+    <block type="computer_beep"></block>
+    <block type="computer_energy"></block>
+    <block type="computer_max_energy"></block>
+  </category>
+  <category name="Utility" colour="#9fa55b">
+    <block type="wait"></block>
+  </category>
+  <sep></sep>
+  <category name="Crafting Upgrade" colour="#5ba55b">
+    <block type="crafting_craft"></block>
+  </category>
+  <category name="Inventory Controller" colour="#5ba55b">
+    <block type="inventory_drop_into_slot"></block>
+    <block type="inventory_suck_from_slot"></block>
+    <block type="inventory_equip"></block>
+    <block type="inventory_get_inventory_size"></block>
+    <block type="inventory_get_stack_in_slot"></block>
+    <block type="inventory_get_stack_in_internal_slot"></block>
+  </category>
+  <category name="Redstone" colour="#5ba55b">
+    <block type="redstone_set_output"></block>
+    <block type="redstone_get_input"></block>
+    <block type="redstone_get_output"></block>
+  </category>
+  <category name="Sign" colour="#5ba55b">
+    <block type="sign_get_value"></block>
+    <block type="sign_set_value"></block>
+  </category>
+  <category name="Generator" colour="#5ba55b">
+    <block type="generator_insert"></block>
+    <block type="generator_remove"></block>
+    <block type="generator_count"></block>
+  </category>
+</xml>
