@@ -39,3 +39,38 @@ function updateToolbox(new_toolbox) {
 		new_toolbox = document.getElementById(new_toolbox);
 	workspace.updateToolbox(new_toolbox);
 }
+
+function file_error(msg) {
+	let file_error = document.getElementById("file_error");
+	file_error.innerText = msg;
+	file_error.style.display = "block";
+}
+
+function hide_error() {
+	document.getElementById("file_error").style.display = "none";
+}
+
+function save_code() {
+	let code = generated_code_output.value;
+	let fn = null;
+	if (filename_output.value != "")
+		fn = filename_output.value;
+
+	jQuery.post("save_script.php", { script: code, filename: fn })
+		.done(function(payload) {
+			console.debug(payload);
+			payload = payload.split(';');
+			if (payload[0] === "no_content")
+				file_error("No content received.");
+			else if (payload[0] === "timeout")
+				file_error("Was unable to find available filename within 10 attempts.");
+			else if (payload[0] === "unable_to_write")
+				file_error("Unable to write file to disk.");
+			else {
+				filename_output.value = payload[0];
+				file_save_url.href = "https://towerofawesome.org/blocklyoc/saved_scripts/" + payload[0];
+				file_save_display.style.display = "block";
+				btn_save.innerText = "Update link";
+			}
+		})
+}
