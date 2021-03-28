@@ -283,6 +283,9 @@ ini_set('display_errors', 1);
 		<?php require_once "toolbox_advanced_mode.xml" ?>
 	</body>
 	<script>
+		//Add OC reserved words
+		Blockly.Lua.addReservedWords("robot,computer,crafting,inventory_controller,redstone,sign,generator,component");
+
 		const toolbox_beginner_mode = document.getElementById('toolbox_beginner_mode');
 		const toolbox_intermediate_mode = document.getElementById('toolbox_intermediate_mode');
 		const toolbox_advanced_mode = document.getElementById('toolbox_advanced_mode');
