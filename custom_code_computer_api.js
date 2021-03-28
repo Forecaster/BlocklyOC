@@ -42,7 +42,7 @@ Blockly.Lua['uptime'] = function(block) {
 
 Blockly.Lua['shutdown'] = function(block) {
   var value_reboot = Blockly.Lua.valueToCode(block, 'reboot', Blockly.Lua.ORDER_ATOMIC);
-  var code = 'computer.shutdown(' + value_reboot + ')\n';
+  var code = 'computer.shutdown(' + valueFilter(value_reboot) + ')\n';
   return code;
 };
 
@@ -54,7 +54,7 @@ Blockly.Lua['getbootaddress'] = function(block) {
 
 Blockly.Lua['setbootaddress'] = function(block) {
   var value_address = Blockly.Lua.valueToCode(block, 'address', Blockly.Lua.ORDER_ATOMIC);
-  var code = 'computer.setBootAddress(' + value_address + ')\n';
+  var code = 'computer.setBootAddress(' + valueFilter(value_address) + ')\n';
   return code;
 };
 
@@ -87,13 +87,13 @@ Blockly.Lua['removeuser'] = function(block) {
 Blockly.Lua['pushsignal'] = function(block) {
   var text_name = block.getFieldValue('name');
   var value_fields = Blockly.Lua.valueToCode(block, 'fields', Blockly.Lua.ORDER_ATOMIC);
-  var code = 'computer.pushSignal(' + text_name + ', table.unpack(' + value_fields + ')\n';
+  var code = 'computer.pushSignal(' + text_name + ', table.unpack(' + valueFilter(value_fields) + ')\n';
   return code;
 };
 
 Blockly.Lua['pullsignal'] = function(block) {
   var value_timeout = Blockly.Lua.valueToCode(block, 'timeout', Blockly.Lua.ORDER_ATOMIC);
-  var code = 'computer.pullSignal(' + value_timeout + ')';
+  var code = 'computer.pullSignal(' + valueFilter(value_timeout) + ')';
   // TODO: Change ORDER_NONE to the correct strength.
   return [code, Blockly.Lua.ORDER_NONE];
 };
@@ -105,7 +105,7 @@ Blockly.Lua['beep'] = function(block) {
     value_frequency = 'nil';
   if (value_duration == "")
     value_frequency = 'nil';
-  var code = 'computer.beep(' + value_frequency + ', ' + value_duration + ')\n';
+  var code = 'computer.beep(' + valueFilter(value_frequency) + ', ' + valueFilter(value_duration) + ')\n';
   return code;
 };
 

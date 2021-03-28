@@ -14,7 +14,7 @@ Blockly.Lua['robot_suck'] = function(block) {
   const value_count = Blockly.Lua.valueToCode(block, 'count', Blockly.Lua.ORDER_ATOMIC);
   if (number_count == '-1')
     number_count = '';
-  return 'robot.suck' + dropdown_direction + '(' + (value_count || number_count) + ')\n';
+  return 'robot.suck' + dropdown_direction + '(' + (valueFilter(value_count) || number_count) + ')\n';
 };
 
 Blockly.Lua['robot_drop'] = function(block) {
@@ -23,7 +23,7 @@ Blockly.Lua['robot_drop'] = function(block) {
   const value_count = Blockly.Lua.valueToCode(block, 'count', Blockly.Lua.ORDER_ATOMIC);
   if (number_count == '-1')
     number_count = '';
-  return 'robot.drop' + dropdown_direction + '(' + (value_count || number_count) + ')\n';
+  return 'robot.drop' + dropdown_direction + '(' + (valueFilter(value_count) || number_count) + ')\n';
 };
 
 Blockly.Lua['robot_place'] = function(block) {
@@ -71,26 +71,26 @@ Blockly.Lua['computer_shutdown'] = function(block) {
 Blockly.Lua['computer_beep'] = function(block) {
   const text_frequency = block.getFieldValue('frequency');
   const value_frequency = Blockly.Lua.valueToCode(block, 'frequency', Blockly.Lua.ORDER_ATOMIC);
-  return 'computer.beep(' + (value_frequency || text_frequency) + ')\n';
+  return 'computer.beep(' + (valueFilter(value_frequency) || text_frequency) + ')\n';
 };
 
 Blockly.Lua['robot_craft'] = function(block) {
   const number_count = block.getFieldValue('count');
   const value_count = Blockly.Lua.valueToCode(block, 'count', Blockly.Lua.ORDER_ATOMIC);
-  return 'crafting.craft(' + (value_count || number_count) + ')\n';
+  return 'crafting.craft(' + (valueFilter(value_count) || number_count) + ')\n';
 };
 
 Blockly.Lua['robot_select'] = function(block) {
   const number_slot = block.getFieldValue('slot');
   const value_slot = Blockly.Lua.valueToCode(block, 'slot', Blockly.Lua.ORDER_ATOMIC);
-  return 'robot.select(' + (value_slot || number_slot) + ')\n';
+  return 'robot.select(' + (valueFilter(value_slot) || number_slot) + ')\n';
 };
 
 Blockly.Lua['robot_count'] = function(block) {
   const dropdown_count = block.getFieldValue('count');
   const number_slot = block.getFieldValue('slot');
   const value_slot = Blockly.Lua.valueToCode(block, 'slot', Blockly.Lua.ORDER_ATOMIC);
-  return 'robot.' + dropdown_count + '(' + (value_slot || number_slot) + ')';
+  return ['robot.' + dropdown_count + '(' + (valueFilter(value_slot) || number_slot) + ')', Blockly.Lua.ORDER_NONE];
 };
 
 Blockly.Lua['robot_transfer'] = function(block) {
@@ -100,7 +100,7 @@ Blockly.Lua['robot_transfer'] = function(block) {
   const value_count = Blockly.Lua.valueToCode(block, 'count', Blockly.Lua.ORDER_ATOMIC);
   if (number_count == '-1')
     number_count = 'nil';
-  return 'robot.transferTo(' + (value_slot || number_slot) + ', ' + (value_count || number_count) + ')\n';
+  return 'robot.transferTo(' + (valueFilter(value_slot) || number_slot) + ', ' + (valueFilter(value_count) || number_count) + ')\n';
 };
 
 Blockly.Lua['robot_compare'] = function(block) {
@@ -126,13 +126,13 @@ Blockly.Lua['inventory_get_stack_in_slot'] = function(block) {
   const dropdown_side = block.getFieldValue('side');
   const number_slot = block.getFieldValue('slot');
   const value_slot = Blockly.Lua.valueToCode(block, 'slot', Blockly.Lua.ORDER_ATOMIC);
-  return ['inventory_controller.getStackInSlot(' + dropdown_side + ', ' + (value_slot || number_slot) + ')', Blockly.Lua.ORDER_NONE];
+  return ['inventory_controller.getStackInSlot(' + dropdown_side + ', ' + (valueFilter(value_slot) || number_slot) + ')', Blockly.Lua.ORDER_NONE];
 };
 
 Blockly.Lua['inventory_get_stack_in_internal_slot'] = function(block) {
   const number_slot = block.getFieldValue('slot');
   const value_slot = Blockly.Lua.valueToCode(block, 'slot', Blockly.Lua.ORDER_ATOMIC);
-  return ['inventory_controller.getStackInInternalSlot(' + (value_slot || number_slot) + ')', Blockly.Lua.ORDER_NONE];
+  return ['inventory_controller.getStackInInternalSlot(' + (valueFilter(value_slot) || number_slot) + ')', Blockly.Lua.ORDER_NONE];
 };
 
 Blockly.Lua['inventory_drop_into_slot'] = function(block) {
@@ -143,7 +143,7 @@ Blockly.Lua['inventory_drop_into_slot'] = function(block) {
   const value_count = Blockly.Lua.valueToCode(block, 'count', Blockly.Lua.ORDER_ATOMIC);
   if (number_count == '-1')
     number_count = 'nil';
-  return 'inventory_controller.dropIntoSlot(' + dropdown_side + ', ' + (value_slot || number_slot) + ', ' + (value_count || number_count) + ')\n';
+  return 'inventory_controller.dropIntoSlot(' + dropdown_side + ', ' + (valueFilter(value_slot) || number_slot) + ', ' + (valueFilter(value_count) || number_count) + ')\n';
 };
 
 Blockly.Lua['inventory_suck_from_slot'] = function(block) {
@@ -154,7 +154,7 @@ Blockly.Lua['inventory_suck_from_slot'] = function(block) {
   const value_count = Blockly.Lua.valueToCode(block, 'count', Blockly.Lua.ORDER_ATOMIC);
   if (number_count == '-1')
     number_count = 'nil';
-  return 'inventory_controller.suckFromSlot(' + dropdown_side + ', ' + (value_slot || number_slot) + ', ' + (value_count || number_count) + ')\n';
+  return 'inventory_controller.suckFromSlot(' + dropdown_side + ', ' + (valueFilter(value_slot) || number_slot) + ', ' + (valueFilter(value_count) || number_count) + ')\n';
 };
 
 Blockly.Lua['inventory_equip'] = function(block) {
@@ -175,7 +175,7 @@ Blockly.Lua['redstone_set_output'] = function(block) {
   const dropdown_side = block.getFieldValue('side');
   const number_value = block.getFieldValue('value');
   const value_value = Blockly.Lua.valueToCode(block, 'value', Blockly.Lua.ORDER_ATOMIC);
-  return 'redstone.setOutput(' + dropdown_side + ', ' + (value_value || number_value) + ')\n';
+  return 'redstone.setOutput(' + dropdown_side + ', ' + (valueFilter(value_value) || number_value) + ')\n';
 };
 
 Blockly.Lua['sign_get_value'] = function(block) {
@@ -185,7 +185,7 @@ Blockly.Lua['sign_get_value'] = function(block) {
 Blockly.Lua['sign_set_value'] = function(block) {
   const text_value = block.getFieldValue('value');
   const value_value = Blockly.Lua.valueToCode(block, 'value', Blockly.Lua.ORDER_ATOMIC);
-  return 'sign.setValue(' + (value_value || text_value) + ')\n';
+  return 'sign.setValue(' + (valueFilter(value_value) || text_value) + ')\n';
 };
 
 Blockly.Lua['generator_insert'] = function(block) {
@@ -193,7 +193,7 @@ Blockly.Lua['generator_insert'] = function(block) {
   const value_count = Blockly.Lua.valueToCode(block, 'count', Blockly.Lua.ORDER_ATOMIC);
   if (number_count == '-1')
     number_count = 'nil';
-  return 'generator.insert(' + (value_count || number_count) + ')\n';
+  return 'generator.insert(' + (valueFilter(value_count) || number_count) + ')\n';
 };
 
 Blockly.Lua['generator_remove'] = function(block) {
@@ -201,7 +201,7 @@ Blockly.Lua['generator_remove'] = function(block) {
   const value_count = Blockly.Lua.valueToCode(block, 'count', Blockly.Lua.ORDER_ATOMIC);
   if (number_count == '-1')
     number_count = 'nil';
-  return 'generator.remove(' + (value_count || number_count) + ')\n';
+  return 'generator.remove(' + (valueFilter(value_count) || number_count) + ')\n';
 };
 
 Blockly.Lua['generator_count'] = function(block) {

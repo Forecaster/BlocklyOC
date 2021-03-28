@@ -24,7 +24,7 @@ Blockly.Lua['detectdown'] = function(block) {
 
 Blockly.Lua['select'] = function(block) {
 	var value_slot = Blockly.Lua.valueToCode(block, 'slot', Blockly.Lua.ORDER_ATOMIC);
-	var code = 'robot.select(' + value_slot + ')\n';
+	var code = 'robot.select(' + valueFilter(value_slot) + ')\n';
 	// TODO: Change ORDER_NONE to the correct strength.
 	return [code, Blockly.Lua.ORDER_NONE];
 };
@@ -37,13 +37,13 @@ Blockly.Lua['inventorysize'] = function(block) {
 
 Blockly.Lua['count'] = function(block) {
 	var value_slot = Blockly.Lua.valueToCode(block, 'slot', Blockly.Lua.ORDER_ATOMIC);
-	var code = 'robot.count(' + value_slot + ')';
+	var code = 'robot.count(' + valueFilter(value_slot) + ')';
 	return [code, Blockly.Lua.ORDER_NONE];
 };
 
 Blockly.Lua['space'] = function(block) {
 	var value_slot = Blockly.Lua.valueToCode(block, 'slot', Blockly.Lua.ORDER_ATOMIC);
-	var code = 'robot.space(' + value_slot + ')';
+	var code = 'robot.space(' + valueFilter(value_slot) + ')';
 	return [code, Blockly.Lua.ORDER_NONE];
 };
 
@@ -54,13 +54,13 @@ Blockly.Lua['transferto'] = function(block) {
 		value_slot = 'nil';
 	if (value_count == "")
 		value_count = 'nil';
-	var code = 'robot.transferTo(' + value_slot + ', ' + value_count + ')\n';
+	var code = 'robot.transferTo(' + valueFilter(value_slot) + ', ' + valueFilter(value_count) + ')\n';
 	return code;
 };
 
 Blockly.Lua['compareto'] = function(block) {
 	var value_slot = Blockly.Lua.valueToCode(block, 'slot', Blockly.Lua.ORDER_ATOMIC);
-	var code = 'robot.compareTo(' + value_slot + ')';
+	var code = 'robot.compareTo(' + valueFilter(value_slot) + ')';
 	return [code, Blockly.Lua.ORDER_NONE];
 };
 
@@ -83,42 +83,42 @@ Blockly.Lua['comparedown'] = function(block) {
 
 Blockly.Lua['drop'] = function(block) {
 	var value_count = Blockly.Lua.valueToCode(block, 'count', Blockly.Lua.ORDER_ATOMIC);
-	var code = 'robot.drop(' + value_count + ')';
+	var code = 'robot.drop(' + valueFilter(value_count) + ')';
 	// TODO: Change ORDER_NONE to the correct strength.
 	return [code, Blockly.Lua.ORDER_NONE];
 };
 
 Blockly.Lua['dropup'] = function(block) {
 	var value_count = Blockly.Lua.valueToCode(block, 'count', Blockly.Lua.ORDER_ATOMIC);
-	var code = 'robot.dropUp(' + value_count + ')';
+	var code = 'robot.dropUp(' + valueFilter(value_count) + ')';
 	// TODO: Change ORDER_NONE to the correct strength.
 	return [code, Blockly.Lua.ORDER_NONE];
 };
 
 Blockly.Lua['dropdown'] = function(block) {
 	var value_count = Blockly.Lua.valueToCode(block, 'count', Blockly.Lua.ORDER_ATOMIC);
-	var code = 'robot.dropDown(' + value_count + ')';
+	var code = 'robot.dropDown(' + valueFilter(value_count) + ')';
 	// TODO: Change ORDER_NONE to the correct strength.
 	return [code, Blockly.Lua.ORDER_NONE];
 };
 
 Blockly.Lua['suck'] = function(block) {
 	var value_count = Blockly.Lua.valueToCode(block, 'count', Blockly.Lua.ORDER_ATOMIC);
-	var code = 'robot.suck(' + value_count + ')';
+	var code = 'robot.suck(' + valueFilter(value_count) + ')';
 	// TODO: Change ORDER_NONE to the correct strength.
 	return [code, Blockly.Lua.ORDER_NONE];
 };
 
 Blockly.Lua['suckup'] = function(block) {
 	var value_count = Blockly.Lua.valueToCode(block, 'count', Blockly.Lua.ORDER_ATOMIC);
-	var code = 'robot.suckUp(' + value_count + ')';
+	var code = 'robot.suckUp(' + valueFilter(value_count) + ')';
 	// TODO: Change ORDER_NONE to the correct strength.
 	return [code, Blockly.Lua.ORDER_NONE];
 };
 
 Blockly.Lua['suckdown'] = function(block) {
 	var value_count = Blockly.Lua.valueToCode(block, 'count', Blockly.Lua.ORDER_ATOMIC);
-	var code = 'robot.suckDown(' + value_count + ')';
+	var code = 'robot.suckDown(' + valueFilter(value_count) + ')';
 	// TODO: Change ORDER_NONE to the correct strength.
 	return [code, Blockly.Lua.ORDER_NONE];
 };
@@ -130,7 +130,7 @@ Blockly.Lua['place'] = function(block) {
 		value_side = 'nil';
 	if (value_sneaky == "")
 		value_sneaky = 'nil';
-	var code = '{robot.place(' + value_side + ', ' + value_sneaky + ')}';
+	var code = '{robot.place(' + valueFilter(value_side) + ', ' + valueFilter(value_sneaky) + ')}';
 	// TODO: Change ORDER_NONE to the correct strength.
 	return [code, Blockly.Lua.ORDER_NONE];
 };
@@ -142,7 +142,7 @@ Blockly.Lua['placeup'] = function(block) {
 		value_side = 'nil';
 	if (value_sneaky == "")
 		value_sneaky = 'nil';
-	var code = '{robot.placeUp(' + value_side + ', ' + value_sneaky + ')}';
+	var code = '{robot.placeUp(' + valueFilter(value_side) + ', ' + valueFilter(value_sneaky) + ')}';
 	// TODO: Change ORDER_NONE to the correct strength.
 	return [code, Blockly.Lua.ORDER_NONE];
 };
@@ -154,7 +154,7 @@ Blockly.Lua['placedown'] = function(block) {
 		value_side = 'nil';
 	if (value_sneaky == "")
 		value_sneaky = 'nil';
-	var code = '{robot.placeDown(' + value_side + ', ' + value_sneaky + ')}';
+	var code = '{robot.placeDown(' + valueFilter(value_side) + ', ' + valueFilter(value_sneaky) + ')}';
 	// TODO: Change ORDER_NONE to the correct strength.
 	return [code, Blockly.Lua.ORDER_NONE];
 };
@@ -172,7 +172,7 @@ Blockly.Lua['swing'] = function(block) {
 		value_side = 'nil';
 	if (value_sneaky == "")
 		value_sneaky = 'nil';
-	var code = '{robot.swing(' + value_side + ', ' + value_sneaky + ')}';
+	var code = '{robot.swing(' + valueFilter(value_side) + ', ' + valueFilter(value_sneaky) + ')}';
 	// TODO: Change ORDER_NONE to the correct strength.
 	return [code, Blockly.Lua.ORDER_NONE];
 };
@@ -184,7 +184,7 @@ Blockly.Lua['swingup'] = function(block) {
 		value_side = 'nil';
 	if (value_sneaky == "")
 		value_sneaky = 'nil';
-	var code = '{robot.swingUp(' + value_side + ', ' + value_sneaky + ')}';
+	var code = '{robot.swingUp(' + valueFilter(value_side) + ', ' + valueFilter(value_sneaky) + ')}';
 	// TODO: Change ORDER_NONE to the correct strength.
 	return [code, Blockly.Lua.ORDER_NONE];
 };
@@ -196,7 +196,7 @@ Blockly.Lua['swingdown'] = function(block) {
 		value_side = 'nil';
 	if (value_sneaky == "")
 		value_sneaky = 'nil';
-	var code = '{robot.swingDown(' + value_side + ', ' + value_sneaky + ')}';
+	var code = '{robot.swingDown(' + valueFilter(value_side) + ', ' + valueFilter(value_sneaky) + ')}';
 	// TODO: Change ORDER_NONE to the correct strength.
 	return [code, Blockly.Lua.ORDER_NONE];
 };
@@ -211,7 +211,7 @@ Blockly.Lua['use'] = function(block) {
 		value_sneaky = 'nil';
 	if (value_duration == "")
 		value_duration = 'nil';
-	var code = '{robot.use(' + value_side + ', ' + value_sneaky + ', ' + value_duration + ')}';
+	var code = '{robot.use(' + valueFilter(value_side) + ', ' + valueFilter(value_sneaky) + ', ' + valueFilter(value_duration) + ')}';
 	// TODO: Change ORDER_NONE to the correct strength.
 	return [code, Blockly.Lua.ORDER_NONE];
 };
@@ -226,7 +226,7 @@ Blockly.Lua['useup'] = function(block) {
 		value_sneaky = 'nil';
 	if (value_duration == "")
 		value_duration = 'nil';
-	var code = '{robot.useUp(' + value_side + ', ' + value_sneaky + ', ' + value_duration + ')}';
+	var code = '{robot.useUp(' + valueFilter(value_side) + ', ' + valueFilter(value_sneaky) + ', ' + valueFilter(value_duration) + ')}';
 	// TODO: Change ORDER_NONE to the correct strength.
 	return [code, Blockly.Lua.ORDER_NONE];
 };
@@ -241,7 +241,7 @@ Blockly.Lua['usedown'] = function(block) {
 		value_sneaky = 'nil';
 	if (value_duration == "")
 		value_duration = 'nil';
-	var code = '{robot.useDown(' + value_side + ', ' + value_sneaky + ', ' + value_duration + ')}';
+	var code = '{robot.useDown(' + valueFilter(value_side) + ', ' + valueFilter(value_sneaky) + ', ' + valueFilter(value_duration) + ')}';
 	// TODO: Change ORDER_NONE to the correct strength.
 	return [code, Blockly.Lua.ORDER_NONE];
 };
@@ -293,7 +293,7 @@ Blockly.Lua['tankcount'] = function(block) {
 
 Blockly.Lua['selecttank'] = function(block) {
 	var value_tank = Blockly.Lua.valueToCode(block, 'tank', Blockly.Lua.ORDER_ATOMIC);
-	var code = 'robot.selectTank(' + value_tank + ')\n';
+	var code = 'robot.selectTank(' + valueFilter(value_tank) + ')\n';
 	return code;
 };
 
@@ -325,7 +325,7 @@ Blockly.Lua['transferfluidto'] = function(block) {
 		value_tank = 'nil';
 	if (value_count == "")
 		value_count = 'nil';
-	var code = 'robot.transferFluidTo(' + value_tank + ', ' + value_count + ')';
+	var code = 'robot.transferFluidTo(' + valueFilter(value_tank) + ', ' + valueFilter(value_count) + ')';
 	// TODO: Change ORDER_NONE to the correct strength.
 	return [code, Blockly.Lua.ORDER_NONE];
 };
@@ -350,42 +350,42 @@ Blockly.Lua['comparefluiddown'] = function(block) {
 
 Blockly.Lua['drain'] = function(block) {
 	var value_count = Blockly.Lua.valueToCode(block, 'count', Blockly.Lua.ORDER_ATOMIC);
-	var code = 'robot.drain(' + value_count + ')';
+	var code = 'robot.drain(' + valueFilter(value_count) + ')';
 	// TODO: Change ORDER_NONE to the correct strength.
 	return [code, Blockly.Lua.ORDER_NONE];
 };
 
 Blockly.Lua['drainup'] = function(block) {
 	var value_count = Blockly.Lua.valueToCode(block, 'count', Blockly.Lua.ORDER_ATOMIC);
-	var code = 'robot.drainUp(' + value_count + ')';
+	var code = 'robot.drainUp(' + valueFilter(value_count) + ')';
 	// TODO: Change ORDER_NONE to the correct strength.
 	return [code, Blockly.Lua.ORDER_NONE];
 };
 
 Blockly.Lua['draindown'] = function(block) {
 	var value_count = Blockly.Lua.valueToCode(block, 'count', Blockly.Lua.ORDER_ATOMIC);
-	var code = 'robot.drainDown(' + value_count + ')';
+	var code = 'robot.drainDown(' + valueFilter(value_count) + ')';
 	// TODO: Change ORDER_NONE to the correct strength.
 	return [code, Blockly.Lua.ORDER_NONE];
 };
 
 Blockly.Lua['fill'] = function(block) {
 	var value_count = Blockly.Lua.valueToCode(block, 'count', Blockly.Lua.ORDER_ATOMIC);
-	var code = 'robot.fill(' + value_count + ')';
+	var code = 'robot.fill(' + valueFilter(value_count) + ')';
 	// TODO: Change ORDER_NONE to the correct strength.
 	return [code, Blockly.Lua.ORDER_NONE];
 };
 
 Blockly.Lua['fillup'] = function(block) {
 	var value_count = Blockly.Lua.valueToCode(block, 'count', Blockly.Lua.ORDER_ATOMIC);
-	var code = 'robot.fillUp(' + value_count + ')';
+	var code = 'robot.fillUp(' + valueFilter(value_count) + ')';
 	// TODO: Change ORDER_NONE to the correct strength.
 	return [code, Blockly.Lua.ORDER_NONE];
 };
 
 Blockly.Lua['filldown'] = function(block) {
 	var value_count = Blockly.Lua.valueToCode(block, 'count', Blockly.Lua.ORDER_ATOMIC);
-	var code = 'robot.fillDown(' + value_count + ')';
+	var code = 'robot.fillDown(' + valueFilter(value_count) + ')';
 	// TODO: Change ORDER_NONE to the correct strength.
 	return [code, Blockly.Lua.ORDER_NONE];
 };

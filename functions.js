@@ -34,6 +34,11 @@ function generatedCodePrependRequireComponent(code) {
 	return code;
 }
 
+function valueFilter(input_value) {
+	input_value = input_value.replaceAll(/^\(/g, "").replaceAll(/\)$/g, "")
+	return input_value;
+}
+
 function updateToolbox(new_toolbox) {
 	if (typeof new_toolbox == "string")
 		new_toolbox = document.getElementById(new_toolbox);

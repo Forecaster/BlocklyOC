@@ -60,7 +60,7 @@ Blockly.Lua['comparetodatabase'] = function(block) {
   var value_slot = Blockly.Lua.valueToCode(block, 'slot', Blockly.Lua.ORDER_ATOMIC);
   var value_dbaddress = Blockly.Lua.valueToCode(block, 'dbAddress', Blockly.Lua.ORDER_ATOMIC);
   var value_dbslot = Blockly.Lua.valueToCode(block, 'dbSlot', Blockly.Lua.ORDER_ATOMIC);
-  var code = 'inventory_controller.compareToDatabase(' + value_slot + ', ' + value_dbaddress + ', ' + value_dbslot + ')';
+  var code = 'inventory_controller.compareToDatabase(' + valueFilter(value_slot) + ', ' + valueFilter(value_dbaddress) + ', ' + valueFilter(value_dbslot) + ')';
   // TODO: Change ORDER_NONE to the correct strength.
   return [code, Blockly.Lua.ORDER_NONE];
 };
@@ -69,7 +69,7 @@ Blockly.Lua['comparestacks'] = function(block) {
   var value_side = Blockly.Lua.valueToCode(block, 'side', Blockly.Lua.ORDER_ATOMIC);
   var value_slota = Blockly.Lua.valueToCode(block, 'slotA', Blockly.Lua.ORDER_ATOMIC);
   var value_slotb = Blockly.Lua.valueToCode(block, 'slotB', Blockly.Lua.ORDER_ATOMIC);
-  var code = 'inventory_controller.compareStacks(' + value_side + ', ' + value_slota + ', ' + value_slotb + ')';
+  var code = 'inventory_controller.compareStacks(' + valueFilter(value_side) + ', ' + valueFilter(value_slota) + ', ' + valueFilter(value_slotb) + ')';
   // TODO: Change ORDER_NONE to the correct strength.
   return [code, Blockly.Lua.ORDER_NONE];
 };
@@ -77,7 +77,7 @@ Blockly.Lua['comparestacks'] = function(block) {
 Blockly.Lua['getslotmaxstacksize'] = function(block) {
   var value_side = Blockly.Lua.valueToCode(block, 'side', Blockly.Lua.ORDER_ATOMIC);
   var value_slot = Blockly.Lua.valueToCode(block, 'slot', Blockly.Lua.ORDER_ATOMIC);
-  var code = 'inventory_controller.getSlotMaxStackSize(' + value_side + ', ' + value_slot + ')';
+  var code = 'inventory_controller.getSlotMaxStackSize(' + valueFilter(value_side) + ', ' + valueFilter(value_slot) + ')';
   // TODO: Change ORDER_NONE to the correct strength.
   return [code, Blockly.Lua.ORDER_NONE];
 };
@@ -85,7 +85,7 @@ Blockly.Lua['getslotmaxstacksize'] = function(block) {
 Blockly.Lua['getslotstacksize'] = function(block) {
   var value_side = Blockly.Lua.valueToCode(block, 'side', Blockly.Lua.ORDER_ATOMIC);
   var value_slot = Blockly.Lua.valueToCode(block, 'slot', Blockly.Lua.ORDER_ATOMIC);
-  var code = 'inventory_controller.getSlotStackSize(' + value_side + ', ' + value_slot + ')';
+  var code = 'inventory_controller.getSlotStackSize(' + valueFilter(value_side) + ', ' + valueFilter(value_slot) + ')';
   // TODO: Change ORDER_NONE to the correct strength.
   return [code, Blockly.Lua.ORDER_NONE];
 };
