@@ -1,4 +1,4 @@
-<xml xmlns="https://developers.google.com/blockly/xml" id="toolbox_beginner_mode" style="display: none">
+<xml xmlns="https://developers.google.com/blockly/xml" id="toolbox_intermediate_mode" style="display: none">
   <category name="Text" colour="#5ba58c">
     <block type="text">
       <field name="TEXT"></field>
@@ -117,6 +117,7 @@
   </category>s
   <sep></sep>
   <category name="Variables" colour="#a55b80" custom="VARIABLE"></category>
+  <category name="Functions" colour="#995ba5" custom="PROCEDURE"></category>
   <sep></sep>
   <category name="Robot" colour="#745ba5">
     <block type="robot_move"></block>

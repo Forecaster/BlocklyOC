@@ -34,6 +34,7 @@ ini_set('display_errors', 1);
 				margin           : 0;
 				background-color : #1f1f1f;
 				color            : white;
+				font-family      : sans-serif;
 			}
 
 			a {
@@ -100,6 +101,11 @@ ini_set('display_errors', 1);
 				color            : white;
 			}
 
+			#btn_mode {
+				background-color : forestgreen;
+				color            : white;
+			}
+
 			.modal {
 				display          : none;
 				position         : fixed;
@@ -157,6 +163,45 @@ ini_set('display_errors', 1);
 			.blocklyToolboxDiv {
 				background-color : #505050;
 			}
+
+			.btn-double-top, .btn-double-bottom {
+				padding      : 8px;
+				border-style : solid;
+				border-color : white;
+				cursor       : pointer;
+				text-shadow  : black 2px 2px;
+			}
+
+			.btn-double-top {
+				margin-top              : 10px;
+				border-top-left-radius  : 15px;
+				border-top-right-radius : 15px;
+				border-width            : 1px 1px 0 1px;
+				text-transform          : uppercase;
+				font-weight             : bold;
+			}
+
+			.btn-double-bottom {
+				border-bottom-left-radius  : 15px;
+				border-bottom-right-radius : 15px;
+				border-width               : 0 1px 1px 1px;
+				border-top                 : 1px solid gray;
+			}
+
+			#mode_switch_beginner_top, #mode_switch_beginner_bottom {
+				background-color : forestgreen;
+				color            : white;
+			}
+
+			#mode_switch_intermediate_top, #mode_switch_intermediate_bottom {
+				background-color : darkorange;
+				color            : white;
+			}
+
+			#mode_switch_advanced_top, #mode_switch_advanced_bottom {
+				background-color : orangered;
+				color            : white;
+			}
 		</style>
 	</head>
 	<body>
@@ -178,6 +223,35 @@ ini_set('display_errors', 1);
 			</div>
 			<div id="file_error" style="display: none;" class="error"></div>
 		</div>
+		<div id="modal_change_mode" class="modal">
+			<div class="btn_close">X</div>
+			<h2>Change mode</h2>
+			<div id="btn_mode_switch_beginner">
+				<div id="mode_switch_beginner_top" class="btn-double-top">
+					Beginner Mode
+				</div>
+				<div id="mode_switch_beginner_bottom" class="btn-double-bottom">
+					Beginner mode provides limited functionality and a simplified set of instructions.
+				</div>
+			</div>
+			<div id="btn_mode_switch_intermediate">
+				<div id="mode_switch_intermediate_top" class="btn-double-top">
+					Intermediate Mode
+				</div>
+				<div id="mode_switch_intermediate_bottom" class="btn-double-bottom">
+					Intermediate mode provides the same functionality as beginner mode, with the addition of functions.
+				</div>
+			</div>
+			<div id="btn_mode_switch_advanced">
+				<div id="mode_switch_advanced_top" class="btn-double-top">
+					Advanced Mode
+				</div>
+				<div id="mode_switch_advanced_bottom" class="btn-double-bottom">
+					Advanced mode provides a full suite of blocks equivalent to the functions available in OC, as well as the full
+					suite of Blockly instructions.
+				</div>
+			</div>
+		</div>
 		<table>
 			<tr>
 				<td>
@@ -195,7 +269,8 @@ ini_set('display_errors', 1);
 			</tr>
 			<tr>
 				<td>
-					<span id="btn_generate" class="btn btn-down">Generate Lua</span>
+					<span id="btn_generate" class="btn btn-down" data-btn-modal-open="generated_code">Generate Lua</span>
+					<span id="btn_mode" class="btn btn-down" data-btn-modal-open="change_mode">Change Mode</span>
 				</td>
 			</tr>
 			<tr>
@@ -204,13 +279,18 @@ ini_set('display_errors', 1);
 		</table>
 		<div id="blocklyDiv" style="position: absolute;"></div>
 		<?php require_once "toolbox_beginner_mode.xml" ?>
+		<?php require_once "toolbox_intermediate_mode.xml" ?>
 		<?php require_once "toolbox_advanced_mode.xml" ?>
 	</body>
 	<script>
+		const toolbox_beginner_mode = document.getElementById('toolbox_beginner_mode');
+		const toolbox_intermediate_mode = document.getElementById('toolbox_intermediate_mode');
+		const toolbox_advanced_mode = document.getElementById('toolbox_advanced_mode');
+
 		const blocklyArea = document.getElementById('blocklyArea');
 		const blocklyDiv = document.getElementById('blocklyDiv');
 		const workspace = Blockly.inject(blocklyDiv, {
-			toolbox: document.getElementById('toolbox_beginner_mode'),
+			toolbox: toolbox_beginner_mode,
 			grid: {
 				spacing: 20,
 				length: 3,
@@ -240,10 +320,24 @@ ini_set('display_errors', 1);
 		onresize();
 		Blockly.svgResize(workspace);
 
+		function close_modal(id) {
+			const modal = document.getElementById("modal_" + id);
+			modal.style.display = null;
+		}
+
 		const modal_closes = document.getElementsByClassName("btn_close");
 		for (let btn in modal_closes) {
 			modal_closes[btn].onclick = function (event) {
 				event.target.parentElement.style.display = null;
+			}
+		}
+
+		const modal_opens = document.querySelectorAll("[data-btn-modal-open]");
+		for (let btn in modal_opens) {
+			modal_opens[btn].onclick = function (event) {
+				let modal = document.getElementById("modal_" + modal_opens[btn].getAttribute("data-btn-modal-open"))
+				if (typeof modal !== "undefined")
+					modal.style.display = "block";
 			}
 		}
 
@@ -262,5 +356,25 @@ ini_set('display_errors', 1);
 		const file_save_url = document.getElementById("file_save_url");
 		const line_warning = document.getElementById("line_warning");
 		const btn_save = document.getElementById("btn_save");
+		const btn_mode = document.getElementById("btn_mode");
+
+		const btn_mode_switch_beginner = document.getElementById("btn_mode_switch_beginner");
+		btn_mode_switch_beginner.onclick = function (event) {
+			workspace.updateToolbox(toolbox_beginner_mode);
+			close_modal("change_mode");
+			btn_mode.style.backgroundColor = "forestgreen";
+		};
+		const btn_mode_switch_intermediate = document.getElementById("btn_mode_switch_intermediate");
+		btn_mode_switch_intermediate.onclick = function (event) {
+			workspace.updateToolbox(toolbox_intermediate_mode);
+			close_modal("change_mode");
+			btn_mode.style.backgroundColor = "darkorange";
+		};
+		const btn_mode_switch_advanced = document.getElementById("btn_mode_switch_advanced");
+		btn_mode_switch_advanced.onclick = function (event) {
+			workspace.updateToolbox(toolbox_advanced_mode);
+			close_modal("change_mode");
+			btn_mode.style.backgroundColor = "orangered";
+		};
 	</script>
 </html>
