@@ -269,6 +269,7 @@ ini_set('display_errors', 1);
 						<a
 							href="https://discord.gg/bYqKv7h">OC discord</a>. Report issues on <a
 							href="https://github.com/Forecaster/BlocklyOC/issues/new">GitHub</a></p>
+					<p>Here is a <a href="https://youtu.be/v0nlwJuyqKg">tutorial video</a> for BlocklyOC!</p>
 				</td>
 			</tr>
 			<tr>
