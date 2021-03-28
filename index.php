@@ -164,6 +164,10 @@ ini_set('display_errors', 1);
 				background-color : #505050;
 			}
 
+			.blocklyCommentTextarea {
+				color: black;
+			}
+
 			.btn-double-top, .btn-double-bottom {
 				padding      : 8px;
 				border-style : solid;
