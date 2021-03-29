@@ -108,9 +108,6 @@
         </shadow>
       </value>
     </block>
-    <block type="controls_forEach">
-      <field name="VAR" id="T}i@}]C[*Bo1c;RiH{!^">j</field>
-    </block>
     <block type="controls_flow_statements">
       <field name="FLOW">BREAK</field>
     </block>
